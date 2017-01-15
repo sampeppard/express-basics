@@ -5,6 +5,8 @@ var express = require('express'),
 
 var app = express();
 
+app.use('/static', express.static(__dirname + '/public'));
+
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/templates');
 
@@ -12,7 +14,7 @@ app.get('/', function(req, res){
 	res.render('index');
 });
 
-app.get('/blog/:title?', function(req, res){ 
+app.get('/blog/:title?', function(req, res){
 	var title = req.params.title;
 	if (title === undefined) {
 		res.status(503);
